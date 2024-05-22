@@ -1,11 +1,8 @@
 package com.lamda.trendingmoviesapp.movies.domain.model
 
-import com.lamda.trendingmoviesapp.movie_details.domain.model.MovieDetails
-
 data class Movies(
     val page:Int,
-    val results:List<MovieDetails>,
+    val results:List<Movie>,
     val totalPages:Int,
     val totalResults:Int
 )
-
