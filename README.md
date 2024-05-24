@@ -14,7 +14,7 @@ This project is for demonstration purposes. It combines the MVVM pattern with th
 
 ## Screenshoots
 
-<img src="https://github.com/jamalnay/TrendingMoviesApp/blob/main/screenshoots/home.png" alt="Home Screenshoot" width="250"> <img src="https://github.com/jamalnay/TrendingMoviesApp/blob/main/screenshoots/movie_details.png" alt="Movie details Screenshot" width="250"> <img src="https://github.com/jamalnay/TrendingMoviesApp/blob/main/screenshoots/error.png" alt="Error loading Screenshot" width="250"> 
+<img src="https://github.com/jamalnay/TrendingMoviesApp/blob/master/screenshoots/home.png" alt="Home Screenshoot" width="250"> <img src="https://github.com/jamalnay/TrendingMoviesApp/blob/master/screenshoots/movie_details.png" alt="Movie details Screenshot" width="250"> <img src="https://github.com/jamalnay/TrendingMoviesApp/blob/master/screenshoots/error.png" alt="Error loading Screenshot" width="250"> 
 
 
 ## Features
@@ -37,4 +37,4 @@ In this project, I have leveraged various Android & Wordpress technologies.
 - **Networking:** Retrofit.
 - **Moshi:** A JSON library for Android.
 - **Coil:** Image loading library for Android.
-- **Paging 3** Android library to load and display pages of data.
+- **Paging3:** Android library to load and display pages of data.
