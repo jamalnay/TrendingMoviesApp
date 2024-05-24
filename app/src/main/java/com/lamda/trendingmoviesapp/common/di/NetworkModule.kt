@@ -1,6 +1,7 @@
 package com.lamda.trendingmoviesapp.common.di
 
 import android.content.Context
+import com.lamda.trendingmoviesapp.BuildConfig
 import com.lamda.trendingmoviesapp.common.util.CacheControlInterceptor
 import com.lamda.trendingmoviesapp.common.util.Constants.BASE_URL
 import dagger.Module
@@ -11,6 +12,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
@@ -28,7 +30,13 @@ object NetworkModule {
         return OkHttpClient().newBuilder()
             .cache(Cache(File(context.cacheDir, "http-cache"), 10L * 1024L * 1024L))
             .addNetworkInterceptor(cacheControlInterceptor)
-            .build()
+            .also {
+                if (BuildConfig.DEBUG) {
+                    it.addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                }
+            }.build()
     }
 
 

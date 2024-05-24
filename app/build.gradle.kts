@@ -80,9 +80,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.moshi)
+    implementation(libs.okhttp.logging)
     implementation(libs.compose.paging3)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.coil.compose)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.moshi)
+    ksp(libs.moshi.codegen)
 }
