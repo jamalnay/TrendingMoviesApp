@@ -1,4 +1,4 @@
-package com.lamda.trendingmoviesapp.movies.presentation.ui.components
+package com.lamda.trendingmoviesapp.common.presentation.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
@@ -12,7 +12,7 @@ import com.lamda.trendingmoviesapp.ui.theme.VioletGrey60
 
 @Composable
 fun LoadingIndicator(
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ){
     Column(
         modifier = modifier,

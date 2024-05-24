@@ -25,9 +25,9 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.lamda.trendingmoviesapp.movies.domain.model.Movie
-import com.lamda.trendingmoviesapp.movies.presentation.ui.components.LoadingIndicator
+import com.lamda.trendingmoviesapp.common.presentation.ui.components.LoadingIndicator
 import com.lamda.trendingmoviesapp.movies.presentation.ui.components.MovieItem
-import com.lamda.trendingmoviesapp.movies.presentation.ui.components.MoviesLoadingError
+import com.lamda.trendingmoviesapp.common.presentation.ui.components.LoadingError
 import com.lamda.trendingmoviesapp.navigation.Destination
 import com.lamda.trendingmoviesapp.ui.theme.Violet30
 import com.lamda.trendingmoviesapp.ui.theme.Violet40
@@ -86,7 +86,7 @@ fun MoviesScreen(
                 ) {
                     when (val loadState = movies.loadState.refresh) {
                         is LoadState.Error -> {
-                            MoviesLoadingError(
+                            LoadingError(
                                 errorMsg = loadState.error.message ?: "Loading error"
                             ) {
                                 movies.retry()
@@ -96,7 +96,7 @@ fun MoviesScreen(
                             LoadingIndicator(modifier = Modifier.fillMaxWidth())
                         }
                         else -> {
-                            MoviesLoadingError(
+                            LoadingError(
                                 errorMsg = "Unexpected error"
                             ) {
                                 movies.retry()

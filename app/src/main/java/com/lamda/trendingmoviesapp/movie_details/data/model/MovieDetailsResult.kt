@@ -2,8 +2,10 @@ package com.lamda.trendingmoviesapp.movie_details.data.model
 
 import com.lamda.trendingmoviesapp.movie_details.domain.model.MovieDetails
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-data class MovieDetailsDTO(
+@JsonClass(generateAdapter = true)
+data class MovieDetailsResult(
     @field:Json(name = "id")
     val movieId: Int,
     @field:Json(name = "title")
@@ -26,7 +28,7 @@ data class MovieDetailsDTO(
     val movieLanguage:List<MovieLanguageDTO>,
     )
 
-fun MovieDetailsDTO.toMovieDetails(): MovieDetails {
+fun MovieDetailsResult.toMovieDetails(): MovieDetails {
     return MovieDetails(
         movieId = movieId,
         title = title,

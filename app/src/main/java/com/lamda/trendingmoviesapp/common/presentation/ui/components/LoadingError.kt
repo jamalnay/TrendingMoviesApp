@@ -1,4 +1,4 @@
-package com.lamda.trendingmoviesapp.movies.presentation.ui.components
+package com.lamda.trendingmoviesapp.common.presentation.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,12 +17,13 @@ import androidx.compose.ui.unit.dp
 import com.lamda.trendingmoviesapp.ui.theme.Purple50
 
 @Composable
-fun MoviesLoadingError(
+fun LoadingError(
+    modifier: Modifier = Modifier,
     errorMsg:String,
-    retry: () -> Unit
+    onRetry: () -> Unit
 ){
     Column(
-        modifier = Modifier.padding(vertical = 16.dp, horizontal = 8.dp),
+        modifier = modifier.padding(vertical = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -37,7 +38,7 @@ fun MoviesLoadingError(
             style = MaterialTheme.typography.titleSmall
         )
         Button(
-            onClick = { retry() },
+            onClick = { onRetry() },
             colors = ButtonDefaults.buttonColors(containerColor = Purple50)
         ){
             Text(

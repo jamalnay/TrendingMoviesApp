@@ -28,7 +28,9 @@ fun NavigationGraph(navController: NavHostController) {
         composable(
             route = Destination.MovieDetailsScreen.route.plus("/{$MOVIE_DETAILS_ARGUMENT_KEY}")
         ) { backStackEntry ->
-            MovieDetailsScreen(backStackEntry.arguments?.getString(MOVIE_DETAILS_ARGUMENT_KEY) ?: "")
+            MovieDetailsScreen(
+                movieId = backStackEntry.arguments?.getString(MOVIE_DETAILS_ARGUMENT_KEY) ?: ""
+            ) { navController.navigateUp() }
         }
     }
 }
