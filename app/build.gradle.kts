@@ -1,6 +1,3 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -8,28 +5,24 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-val apikeyPropertiesFile = rootProject.file("local.properties")
-val apikeyProperties = Properties()
-apikeyProperties.load(FileInputStream(apikeyPropertiesFile))
+
 
 android {
     namespace = "com.lamda.trendingmoviesapp"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.lamda.trendingmoviesapp"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = libs.versions.applicationId.get()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "BASE_URL", apikeyProperties["BASE_URL"].toString())
-        buildConfigField("String", "API_KEY", apikeyProperties["API_KEY"].toString())
     }
 
     buildTypes {
@@ -46,14 +39,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
-        buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     }
     packaging {
         resources {
@@ -63,6 +55,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":common:ui"))
+    implementation(project(":common:network"))
+    implementation(project(":common:util"))
+    implementation(project(":feature:trending"))
+    implementation(project(":feature:moviedetails"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

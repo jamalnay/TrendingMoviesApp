@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Trending Movies App"
 include(":app")
- 
+include(":common:ui")
+include(":common:network")
+include(":common:util")
+include(":feature:trending")
+include(":feature:moviedetails")

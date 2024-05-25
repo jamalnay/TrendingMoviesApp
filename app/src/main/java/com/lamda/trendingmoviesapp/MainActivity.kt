@@ -8,8 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.lamda.trendingmoviesapp.navigation.NavigationGraph
-import com.lamda.trendingmoviesapp.ui.theme.TrendingMoviesAppTheme
+import com.lamda.ui.theme.TrendingMoviesAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
