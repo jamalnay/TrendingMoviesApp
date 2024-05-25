@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieDetailsViewModel @Inject constructor(
+internal class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ): ViewModel() {
 

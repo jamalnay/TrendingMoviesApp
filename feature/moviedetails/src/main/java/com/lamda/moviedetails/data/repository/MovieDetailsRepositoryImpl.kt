@@ -7,7 +7,7 @@ import com.lamda.moviedetails.domain.model.MovieDetails
 import com.lamda.moviedetails.domain.repository.MovieDetailsRepository
 import java.net.HttpURLConnection
 
-class MovieDetailsRepositoryImpl(
+internal class MovieDetailsRepositoryImpl(
     private val movieDetailsApi: MovieDetailsService
 ): MovieDetailsRepository {
     override suspend fun getMovieDetails(movieId: Int): ResultSet<MovieDetails> {

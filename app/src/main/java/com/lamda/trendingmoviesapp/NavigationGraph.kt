@@ -13,7 +13,7 @@ import com.lamda.movies.presentation.ui.MoviesScreen
 import com.lamda.ui.Destination
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+internal fun NavigationGraph(navController: NavHostController) {
     val viewModel = hiltViewModel<MoviesViewModel>()
     val movies = viewModel.getMovies().collectAsLazyPagingItems()
     NavHost(

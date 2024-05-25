@@ -23,7 +23,7 @@ import com.lamda.movies.domain.model.Movie
 import com.lamda.trending_movies.R
 
 @Composable
-fun MovieItem(
+internal fun MovieItem(
     movie: Movie,
     onClick:(id:Int) -> Unit
 ) {

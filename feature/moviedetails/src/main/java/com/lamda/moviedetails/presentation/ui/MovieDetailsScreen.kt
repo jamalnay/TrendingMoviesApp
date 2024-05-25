@@ -116,7 +116,7 @@ fun MovieDetailsScreen(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MovieDetailsView(movie: MovieDetails){
+internal fun MovieDetailsView(movie: MovieDetails){
     val context = LocalContext.current
     AsyncImage(
         model = ImageRequest

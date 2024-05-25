@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object MoviesModules {
+internal object MoviesModules {
     @Singleton
     @Provides
     fun provideMoviesService(retrofit: Retrofit): MoviesService = retrofit.create(MoviesService::class.java)

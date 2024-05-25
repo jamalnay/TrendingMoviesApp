@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MovieDetailsService {
+internal interface MovieDetailsService {
     @GET("$MOVIE_DETAILS{$MOVIE_DETAILS_ARGUMENT_KEY}")
     suspend fun getMovieDetails(
         @Path(MOVIE_DETAILS_ARGUMENT_KEY) movieId:Int,

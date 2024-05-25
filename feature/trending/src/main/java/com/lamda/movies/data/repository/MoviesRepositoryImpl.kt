@@ -9,7 +9,7 @@ import com.lamda.movies.domain.model.Movie
 import com.lamda.movies.domain.repository.MoviesRepository
 import kotlinx.coroutines.flow.Flow
 
-class MoviesRepositoryImpl(
+internal class MoviesRepositoryImpl(
     private val moviesApi: MoviesService
 ): MoviesRepository {
     override fun getMovies(): Flow<PagingData<Movie>> {

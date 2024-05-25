@@ -6,7 +6,7 @@ import com.lamda.movies.data.network.MoviesEndPoints.TRENDING_MOVIES
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MoviesService {
+internal interface MoviesService {
     @GET(TRENDING_MOVIES)
     suspend fun getMovies(
         @Query("api_key") apiKey: String = API_KEY,
