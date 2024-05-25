@@ -1,6 +1,5 @@
 package com.lamda.trendingmoviesapp.movie_details.presentation.ui
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -47,7 +46,7 @@ import com.lamda.trendingmoviesapp.common.util.Constants
 import com.lamda.trendingmoviesapp.movie_details.data.model.ResultSet
 import com.lamda.trendingmoviesapp.movie_details.domain.model.MovieDetails
 import com.lamda.trendingmoviesapp.movie_details.presentation.MovieDetailsViewModel
-import com.lamda.trendingmoviesapp.ui.theme.Violet20
+import com.lamda.trendingmoviesapp.movie_details.presentation.ui.components.GenreShip
 import com.lamda.trendingmoviesapp.ui.theme.VioletGrey80
 import com.lamda.trendingmoviesapp.ui.theme.Yellow40
 
@@ -105,11 +104,11 @@ fun MovieDetailsScreen(
                 is ResultSet.Loading ->
                     LoadingIndicator(
                         Modifier
-                        .fillMaxWidth()
-                        .padding(top = paddingValues.calculateTopPadding() + 32.dp))
+                            .fillMaxWidth()
+                            .padding(top = paddingValues.calculateTopPadding() + 32.dp))
                 is ResultSet.Success -> {
                     val data = (movie.value as ResultSet.Success<MovieDetails>).data
-                    MovieDetailsMainScreen(movie = data!!)
+                    MovieDetailsView(movie = data!!)
                 }
             }
         }
@@ -118,7 +117,7 @@ fun MovieDetailsScreen(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MovieDetailsMainScreen(movie:MovieDetails){
+fun MovieDetailsView(movie:MovieDetails){
     val context = LocalContext.current
     AsyncImage(
         model = ImageRequest
@@ -196,20 +195,7 @@ fun MovieDetailsMainScreen(movie:MovieDetails){
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             movie.genres.forEach {genre->
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color.Transparent,
-                        contentColor = VioletGrey80
-                    ),
-                    shape = RoundedCornerShape(20.dp),
-                    border = BorderStroke(2.dp, Violet20)
-                ) {
-                    Text(
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 12.dp),
-                        text = genre.name,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
+                GenreShip(genreName = genre.name)
             }
         }
 
