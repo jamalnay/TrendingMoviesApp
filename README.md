@@ -1,4 +1,4 @@
-A demo Android Project! using MVVM clean architecture, Jetpack Compose for UI and themoviedb.org movies data.
+Android Movies App. A multi-module project that uses MVVM clean architecture, Jetpack Compose for UI and themoviedb.org movies data.
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@ A demo Android Project! using MVVM clean architecture, Jetpack Compose for UI an
 
 ## Overview
 
-This project is for demonstration purposes. It combines the MVVM pattern with the clean architecture principales to create a scalable and maintanable app.
+A multi-module Android project to show the most trending movies from themoviedb.org. it combines the MVVM pattern with the clean architecture principals to create a scalable and maintainable app.
 
 ## Screenshoots
 
@@ -24,8 +24,29 @@ This project is for demonstration purposes. It combines the MVVM pattern with th
 
 ## Architecture
 
-This Android project follows an MVVM-Clean Architecture for the maintainability, and code re-usability, making it highly adaptable for complex app development.
-The architecture enforces a clear separation of concerns, allowing the focus on building individual features while maintaining a well-structured codebase.
+**Project Modules**
+
+    ├── app                   # Main app, it contains: `Application class`, `MainActivity` & the `NavigationGraph`
+    ├── common                # Common project modules
+    │   ├── network           # Network module: builds and configures an HTTP client 
+    │   └── ui                # UI modules
+    │   │   └── components    # UI components: composables used across the app screens
+    │   │   └── theme         # theme: central app theme, for editing colors,typography and configuring dark/light theme.
+    │   └── util              # util: constants and util functions or classes used across the project.
+    └── feature
+        ├── trending          # trending: trending movies feature
+        └── moviedetails      # moviedetails: movie details feature
+
+
+
+
+**Clean architecture**
+Feature modules are seperated into layers: data,domain and presentation. usecases are used to encapsulate business logic
+
+
+**MVVM**
+The MVVM architecturel pattern is used to seperate ui from data, viewmodels are used to hold app states
+
 
 ## Technologies Used
 
