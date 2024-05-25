@@ -50,8 +50,6 @@ The MVVM architecturel pattern is used to seperate ui from data, viewmodels are 
 
 ## Technologies Used
 
-In this project, I have leveraged various Android & Wordpress technologies.
-
 - **Kotlin:** The primary programming language for Android.
 - **Jetpack Compose:** A declarative UI framework for Android.
 - **Dependency Injection:** Dagger's Hilt.
