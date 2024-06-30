@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -31,6 +33,7 @@ import com.lamda.ui.components.LoadingError
 import com.lamda.ui.theme.Violet30
 import com.lamda.ui.theme.Violet40
 import com.lamda.ui.theme.Violet50
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,6 +42,9 @@ fun MoviesScreen(
 ){
     val viewModel = hiltViewModel<MoviesViewModel>()
     val movies = viewModel.movies.collectAsLazyPagingItems()
+
+    val gridState = rememberLazyStaggeredGridState()
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -67,7 +73,9 @@ fun MoviesScreen(
         ){
 
             LazyVerticalStaggeredGrid(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth(),
+                state = gridState,
                 columns = StaggeredGridCells.Adaptive(180.dp),
                 verticalItemSpacing = 12.dp,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -79,31 +87,31 @@ fun MoviesScreen(
                             movie = it
                         ) { movieId ->
                             onMovieClick(movieId)
-
                         }
                     }
                 }
                 item(
                     span = StaggeredGridItemSpan.FullLine
                 ) {
-                    when (val loadState = movies.loadState.refresh) {
-                        is LoadState.Error -> {
-                            LoadingError(
-                                errorMsg = loadState.error.message ?: "Loading error"
-                            ) {
-                                movies.retry()
-                            }
-                        }
-                        is LoadState.Loading -> {
+                    movies.let {
+                        if (it.loadState.refresh is LoadState.Loading) {
                             LoadingIndicator(modifier = Modifier.fillMaxWidth())
                         }
-                        else -> {
+
+                        if (it.loadState.append is LoadState.Error) {
                             LoadingError(
-                                errorMsg = "Unexpected error"
+                                errorMsg = (it.loadState.append as LoadState.Error).error.message ?: "Loading error"
                             ) {
                                 movies.retry()
                             }
+
+                            scope.launch { gridState.animateScrollToItem(gridState.layoutInfo.totalItemsCount) }
                         }
+
+                        if (it.loadState.append is LoadState.Loading) {
+                            LoadingIndicator(modifier = Modifier.fillMaxWidth())
+                        }
+
                     }
                 }
             }

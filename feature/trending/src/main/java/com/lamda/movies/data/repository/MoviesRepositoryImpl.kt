@@ -7,7 +7,9 @@ import com.lamda.movies.data.MoviesDataSource
 import com.lamda.movies.data.network.service.MoviesService
 import com.lamda.movies.domain.model.Movie
 import com.lamda.movies.domain.repository.MoviesRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 
 internal class MoviesRepositoryImpl(
     private val moviesApi: MoviesService
@@ -16,6 +18,6 @@ internal class MoviesRepositoryImpl(
         return Pager(
             config = PagingConfig(pageSize = 20),
             pagingSourceFactory = { MoviesDataSource(moviesApi) }
-        ).flow
+        ).flow.flowOn(Dispatchers.IO)
     }
 }
