@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 import com.lamda.ui.theme.Purple50
@@ -50,4 +51,10 @@ fun LoadingError(
                 style = MaterialTheme.typography.labelLarge)
         }
     }
+}
+
+@Preview
+@Composable
+fun LoadingErrorPreview(){
+    LoadingError(errorMsg = "Error! Please retry.", onRetry = {})
 }

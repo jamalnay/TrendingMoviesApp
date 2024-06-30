@@ -11,9 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -46,6 +43,7 @@ import com.lamda.moviedetails.data.model.ResultSet
 import com.lamda.moviedetails.domain.model.MovieDetails
 import com.lamda.moviedetails.presentation.MovieDetailsViewModel
 import com.lamda.ui.components.GenreShip
+import com.lamda.ui.components.ImdbRatingCard
 import com.lamda.ui.theme.VioletGrey80
 import com.lamda.ui.theme.Yellow40
 
@@ -106,8 +104,8 @@ fun MovieDetailsScreen(
                             .fillMaxWidth()
                             .padding(top = paddingValues.calculateTopPadding() + 32.dp))
                 is ResultSet.Success -> {
-                    val data = (movie.value as ResultSet.Success<MovieDetails>).data
-                    MovieDetailsView(movie = data!!)
+                    val data = (movie.value as ResultSet.Success<MovieDetails>).data!!
+                    MovieDetailsContainer(movie = data)
                 }
             }
         }
@@ -116,7 +114,7 @@ fun MovieDetailsScreen(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun MovieDetailsView(movie: MovieDetails){
+internal fun MovieDetailsContainer(movie: MovieDetails){
     val context = LocalContext.current
     AsyncImage(
         model = ImageRequest
@@ -158,17 +156,7 @@ internal fun MovieDetailsView(movie: MovieDetails){
                 color = Color.White,
                 style = MaterialTheme.typography.titleLarge
             )
-            Card(
-                modifier = Modifier.padding(end = 8.dp),
-                colors = CardDefaults.cardColors(containerColor = Yellow40, contentColor = Color.Black),
-                shape = RoundedCornerShape(4.dp)
-            ) {
-                Text(
-                    modifier = Modifier.padding(vertical = 4.dp, horizontal = 6.dp),
-                    text = "IMDB " + movie.voteAverage.toString().take(3),
-                    style = MaterialTheme.typography.labelSmall
-                )
-            }
+            ImdbRatingCard(rating = movie.voteAverage)
 
         }
         Row(

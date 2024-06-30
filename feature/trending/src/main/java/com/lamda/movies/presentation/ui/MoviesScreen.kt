@@ -21,13 +21,12 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
-import com.lamda.movies.domain.model.Movie
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.lamda.movies.presentation.MoviesViewModel
 import com.lamda.ui.components.LoadingIndicator
 import com.lamda.movies.presentation.ui.components.MovieItem
-import com.lamda.ui.Destination
 import com.lamda.ui.components.LoadingError
 import com.lamda.ui.theme.Violet30
 import com.lamda.ui.theme.Violet40
@@ -36,9 +35,11 @@ import com.lamda.ui.theme.Violet50
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoviesScreen(
-    navController: NavController,
-    movies:LazyPagingItems<Movie>
+    onMovieClick: (Int) -> Unit
 ){
+    val viewModel = hiltViewModel<MoviesViewModel>()
+    val movies = viewModel.movies.collectAsLazyPagingItems()
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = { CenterAlignedTopAppBar(
@@ -77,7 +78,8 @@ fun MoviesScreen(
                         MovieItem(
                             movie = it
                         ) { movieId ->
-                            navController.navigate(Destination.MovieDetailsScreen.route.plus("/$movieId"))
+                            onMovieClick(movieId)
+
                         }
                     }
                 }

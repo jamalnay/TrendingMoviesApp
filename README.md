@@ -7,6 +7,7 @@ Android Movies App. A multi-module project that uses MVVM clean architecture, Je
 - [Features](#features)
 - [Architecture](#architecture)
 - [Technologies Used](#technologies-used)
+- [How to use](#how-to-use)
 
 ## Overview
 
@@ -29,9 +30,7 @@ A multi-module Android project to show the most trending movies from themoviedb.
     ├── app                   # Main app, it contains: `Application class`, `MainActivity` & the `NavigationGraph`
     ├── common                # Common project modules
     │   ├── network           # Network module: builds and configures an HTTP client 
-    │   └── ui                # UI modules
-    │   │   └── components    # UI components: composables used across the app screens
-    │   │   └── theme         # theme: central app theme, for editing colors,typography and configuring dark/light theme.
+    │   └── ui                # UI modules: UI components and app theme (type,colors,shapes)
     │   └── util              # util: constants and util functions or classes used across the project.
     └── feature
         ├── trending          # trending: trending movies feature
@@ -57,3 +56,14 @@ The MVVM architecturel pattern is used to seperate ui from data, viewmodels are 
 - **Moshi:** A JSON library for Android.
 - **Coil:** Image loading library for Android.
 - **Paging3:** Android library to load and display pages of data.
+
+
+## How to use
+
+After forking the project, don't forget to add ```BASE_URL``` and ```API_KEY``` constants to your ```local.properties```
+where **base_url** is themoviedb api url and **api_key** is your api key that you can create for free after creating an account on their website.
+
+```
+BASE_URL = "https://api.themoviedb.org/3/"
+API_KEY = "your_api_key"
+```

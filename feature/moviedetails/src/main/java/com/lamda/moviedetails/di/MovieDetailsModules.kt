@@ -16,17 +16,17 @@ import javax.inject.Singleton
 internal object MovieDetailsModules {
     @Singleton
     @Provides
-    fun provideMoviesService(retrofit: Retrofit): MovieDetailsService
+    fun provideMovieDetailsService(retrofit: Retrofit): MovieDetailsService
     = retrofit.create(MovieDetailsService::class.java)
 
     @Singleton
     @Provides
-    fun provideMoviesRepository(api: MovieDetailsService): MovieDetailsRepository
+    fun provideMovieDetailsRepository(api: MovieDetailsService): MovieDetailsRepository
     = MovieDetailsRepositoryImpl(api)
 
     @Singleton
     @Provides
-    fun provideMoviesUseCase(repository: MovieDetailsRepository)
+    fun provideMovieDetailsUseCase(repository: MovieDetailsRepository)
     = GetMovieDetailsUseCase(repository)
 
 }

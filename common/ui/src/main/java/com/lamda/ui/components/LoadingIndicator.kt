@@ -6,6 +6,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lamda.ui.theme.Purple50
 import com.lamda.ui.theme.VioletGrey60
@@ -24,4 +25,10 @@ fun LoadingIndicator(
             trackColor = VioletGrey60,
         )
     }
+}
+
+@Preview
+@Composable
+fun LoadingIndicatorPreview() {
+    LoadingIndicator()
 }
