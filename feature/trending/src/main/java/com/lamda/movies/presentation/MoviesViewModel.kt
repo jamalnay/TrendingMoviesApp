@@ -8,7 +8,9 @@ import com.lamda.movies.domain.model.Movie
 import com.lamda.movies.domain.use_cases.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +24,11 @@ class MoviesViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getMoviesUseCase().cachedIn(viewModelScope).collect{
+            getMoviesUseCase().cachedIn(viewModelScope).stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = PagingData.empty()
+            ).collect{
                 _movies.value = it
             }
         }
